@@ -1,0 +1,21 @@
+[package]
+name = "tracing-collector"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/akesson/tracing-collector.git"
+description = "A tracing subscriber that collects a copy of the traces for use in tests with insta snapshots"
+categories = ["development-tools::testing", "wasm", "web-programming"]
+keywords = ["tracing", "insta"]
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tracing = "0.1"
+tracing-core = "0.1"
+tracing-subscriber = "0.3"
+strip-ansi-escapes = "0.1"
+
+[dev-dependencies]
+insta = { version = "1.23", features = ["yaml"] }
