@@ -5,8 +5,8 @@ edition = "2021"
 license = "MIT"
 repository = "https://github.com/akesson/tracing-collector.git"
 description = "A tracing subscriber that collects a copy of the traces for use in tests with insta snapshots"
-categories = ["development-tools::testing", "wasm", "web-programming"]
-keywords = ["tracing", "insta"]
+categories = ["development-tools::testing"]
+keywords = ["tracing", "insta", "log", "test"]
 
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
