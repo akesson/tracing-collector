@@ -5,7 +5,7 @@ use std::{
     sync::{Mutex, MutexGuard},
 };
 use tracing::{subscriber::DefaultGuard, Level};
-use tracing_subscriber::fmt::{writer::Tee, MakeWriter};
+use tracing_subscriber::fmt::MakeWriter;
 use tracing_subscriber::util::SubscriberInitExt;
 
 /// `TracingCollector` creates a tracing subscriber that collects a copy of all traces into a buffer.
@@ -107,7 +107,7 @@ impl TracingCollector {
             .with_line_number(true)
             .with_target(false)
             .with_ansi(true)
-            .with_writer(Tee::new(saver, io::stdout))
+            .with_writer(saver)
             .finish()
             .set_default();
 
@@ -167,6 +167,8 @@ impl<'a> CollectingWriter<'a> {
 
 impl<'a> io::Write for CollectingWriter<'a> {
     fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+        let string = String::from_utf8(buf.to_vec()).expect("log contains invalid utf8");
+        println!("{string}");
         // Lock target buffer
         let mut target = self.buf()?;
         // Write to buffer
